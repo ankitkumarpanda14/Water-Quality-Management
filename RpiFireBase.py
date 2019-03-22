@@ -1,16 +1,28 @@
-import time
-from firebase import firebase
+def upload():
+        from datetime import datetime
+        import time
+        from firebase import firebase
+        import serial
+        ArduinoSerial = serial.Serial("/dev/ttyACM0",9600)
+        time.sleep(2)
 
-temp = list(range(0,9))
-host_name = 'https://water-quality-management-bb2ab.firebaseio.com/'
-project_name = 'Water Quality Management'
-time.sleep(5)
-firebase= firebase.FirebaseApplication(host_name)
-time.sleep(5)
+        now = str(datetime.now())
 
-result = firebase.post(project_name,{'temp':str(temp[0]), 'humid': str(temp[1])})
-print "result"
-print "successful!!"
+            time.sleep(5)
+            pH = ArduinoSerial.readline()
+            time.sleep(5)
+
+            ntu = ArduinoSerial.readline()
+            time.sleep(5)
+
+            host_name = 'https://water-quality-management-bb2ab.firebaseio.com/'
+        project_name = 'Water Quality Management'
+        time.sleep(1)
+
+          firebase= firebase.FirebaseApplication(host_name, authentication = None)
 
 
+          result = firebase.post(project_name,{'Time:': now, 'pH:':str(pH), 'Turbidity:': str(ntu)})
+            print result
+            print "successful!!"
 
