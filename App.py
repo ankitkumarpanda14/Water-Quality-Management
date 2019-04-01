@@ -31,7 +31,7 @@ class App:
         self.btn_mem = tkinter.Button(window, text="ALERT!!", width=50, bg ='red', command=self.alert, font = custfont)
         self.btn_mem.pack(anchor=tkinter.CENTER, expand=True)
 
-        # Button that lets the user for live record
+        # Button that lets the user start real time record
         self.btn_item=tkinter.Button(window, text="START REAL TIME RECORDING", width=50, command=self.live_record)
         self.btn_item.pack(anchor=tkinter.CENTER, expand=True)
 
@@ -49,6 +49,6 @@ class App:
 
     def live_record(self):
         liverec()
-
+    
 # Create a window and pass it to the Application object
 App(tkinter.Tk(), "Water Quality Manager")
